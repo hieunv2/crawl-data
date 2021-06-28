@@ -47,7 +47,7 @@ async function getData(use_hash, c4session) {
 
       let htmlDoc = HTMLParser.parse(res.data);
       let table = htmlDoc.querySelectorAll(".lastmatch-table")[0];
-      if (table === undefined) {
+      if (page === 2) {
         break;
       }
       let list = table.querySelectorAll("tr");
