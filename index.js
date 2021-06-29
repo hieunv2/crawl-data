@@ -52,38 +52,38 @@ async function getData(use_hash, c4session) {
       }
       let list = table.querySelectorAll("tr");
       for (let i = 1; i < list.length; i++) {
-        let tr = list[i].querySelectorAll("td")[1]?.textContent;
+        let tr = list[i].querySelectorAll("td")[0]?.textContent;
         // .firstChild.querySelectorAll("a")[0]
         // .firstChild.toString();
 
-        if (tr === undefined) {
-          let tr2 = list[i]
-            .querySelectorAll("td")[0]
-            .querySelectorAll("ul")[0]
-            .querySelectorAll("ul")[0]
-            .querySelectorAll("li");
+        let tr2 = list[i + 1]
+          .querySelectorAll("td")[0]
+          .querySelectorAll("ul")[0]
+          .querySelectorAll("ul")[0]
+          .querySelectorAll("li");
 
-          const length = list[i]
-            .querySelectorAll("td")[0]
-            .querySelectorAll("ul")[0]
-            .querySelectorAll("ul")[0]
-            .querySelectorAll("div").length;
-          console.log(length);
+        const length = list[i + 1]
+          .querySelectorAll("td")[0]
+          .querySelectorAll("ul")[0]
+          .querySelectorAll("ul")[0]
+          .querySelectorAll("div").length;
+        console.log(length);
 
-          for (let j = 0; j < length - 1; j++) {
-            let obj = {};
-            obj.name = tr2[j * 8 + 8].textContent.trim();
-            obj.team = tr2[j * 8 + 9].textContent.trim();
-            obj.army = tr2[j * 8 + 10].textContent.trim();
-            obj.halberd = tr2[j * 8 + 11].textContent.trim();
-            obj.kill = tr2[j * 8 + 12].textContent.trim();
-            obj.technology = tr2[j * 8 + 13].textContent.trim();
-            obj.result = tr2[j * 8 + 14].textContent.trim();
-            obj.rank = tr2[j * 8 + 15]?.textContent.trim();
+        for (let j = 0; j < length - 1; j++) {
+          let obj = {};
+          obj.id = tr?.trim();
+          obj.name = tr2[j * 8 + 8].textContent.trim();
+          obj.team = tr2[j * 8 + 9].textContent.trim();
+          obj.army = tr2[j * 8 + 10].textContent.trim();
+          obj.halberd = tr2[j * 8 + 11].textContent.trim();
+          obj.kill = tr2[j * 8 + 12].textContent.trim();
+          obj.technology = tr2[j * 8 + 13].textContent.trim();
+          obj.result = tr2[j * 8 + 14].textContent.trim();
+          obj.rank = tr2[j * 8 + 15]?.textContent.trim();
 
-            data.push(obj);
-          }
+          data.push(obj);
         }
+        i += 1;
       }
       page += 1;
       // break;
