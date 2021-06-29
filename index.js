@@ -63,17 +63,26 @@ async function getData(use_hash, c4session) {
             .querySelectorAll("ul")[0]
             .querySelectorAll("li");
 
-          let obj = {};
-          obj.name = tr2[8].textContent.trim();
-          obj.team = tr2[9].textContent.trim();
-          obj.army = tr2[10].textContent.trim();
-          obj.halberd = tr2[11].textContent.trim();
-          obj.kill = tr2[12].textContent.trim();
-          obj.technology = tr2[13].textContent.trim();
-          obj.result = tr2[14].textContent.trim();
-          obj.rank = tr2[15]?.textContent.trim();
+          const length = list[i]
+            .querySelectorAll("td")[0]
+            .querySelectorAll("ul")[0]
+            .querySelectorAll("ul")[0]
+            .querySelectorAll("div").length;
+          console.log(length);
 
-          data.push(obj);
+          for (let j = 0; j < length - 1; j++) {
+            let obj = {};
+            obj.name = tr2[j * 8 + 8].textContent.trim();
+            obj.team = tr2[j * 8 + 9].textContent.trim();
+            obj.army = tr2[j * 8 + 10].textContent.trim();
+            obj.halberd = tr2[j * 8 + 11].textContent.trim();
+            obj.kill = tr2[j * 8 + 12].textContent.trim();
+            obj.technology = tr2[j * 8 + 13].textContent.trim();
+            obj.result = tr2[j * 8 + 14].textContent.trim();
+            obj.rank = tr2[j * 8 + 15]?.textContent.trim();
+
+            data.push(obj);
+          }
         }
       }
       page += 1;
